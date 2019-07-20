@@ -16,7 +16,9 @@ import {
   TouchableHighlight,
   StatusBar,
 } from 'react-native';
-
+import { createStackNavigator,createAppContainer } from 'react-navigation';
+import HomeScreen from './screens/HomeScreen';
+import setTextScreen from './screens/setTextScreen';
 import {
   Header,
   LearnMoreLinks,
@@ -24,16 +26,30 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
-const App = () => {
-  return (
-	  <View style={styles.container}>
+/*
+const HomeScreen = () => (
+      	<View style={styles.container}>
 		<TouchableHighlight style={styles.button} underlayColor= '#f5f'>
 		  <Text style={styles.buttonText}>+</Text>
 		</TouchableHighlight>
 	</View>
 
-/**
+)
+*/
+const App = createStackNavigator({
+	  Home: {
+	  	screen: HomeScreen,
+		navigationOptions: {
+			headerTitle: 'Home'
+		}
+	  },
+	  Set: {
+	  	screen: setTextScreen,
+		navigationOptions: {
+			headerTitle: 'Set Text'
+		}
+	  }
+	/**
     <Fragment>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
@@ -77,8 +93,8 @@ const App = () => {
         </ScrollView>
       </SafeAreaView>
     </Fragment>*/ 
-	);
-};
+	
+});
 
 const styles = StyleSheet.create({
 	button: {
@@ -144,4 +160,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default createAppContainer(App);
